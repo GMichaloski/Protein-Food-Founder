@@ -6,18 +6,29 @@ import {
   Link,
   VStack,
   Code,
+  Flex,
   Grid,
-  theme,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import theme from './theme';
 import Forms from './components/Forms';
+import RecipeCard from './components/RecipeCard';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
+      <Box
+        textAlign="center"
+        fontSize="xl"
+        margin={['25px 10px', '40px 300px']}
+      >
         <Forms />
+        <Flex flexDir="row">
+          <RecipeCard
+            image="https://www.receitasedicasdochef.com.br/wp-content/uploads/2014/10/Receitas-de-Cheesecake.jpg"
+            title="Cheesecake brabo"
+            recipeId="1"
+          />
+        </Flex>
       </Box>
     </ChakraProvider>
   );

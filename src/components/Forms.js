@@ -25,11 +25,7 @@ export default function Forms() {
   });
   return (
     <div>
-      <Box
-        margin={['25px 10px', '40px 300px']}
-        as="form"
-        onSubmit={formik.handleSubmit}
-      >
+      <Box as="form" onSubmit={formik.handleSubmit}>
         <FormControl>
           <FormLabel>Max calories</FormLabel>
           <NumberInput
