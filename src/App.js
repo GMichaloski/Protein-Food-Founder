@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ChakraProvider,
   Box,
@@ -10,27 +10,23 @@ import {
   Grid,
 } from '@chakra-ui/react';
 import theme from './theme';
-import Forms from './components/Forms';
-import RecipeCard from './components/RecipeCard';
-
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import { Outlet, Route, Routes } from 'react-router-dom';
+import Home from './routes/Home';
+import RecipePage from './routes/RecipePage';
 function App() {
+  const [recipe, setRecipe] = useState();
+  const [recipeData, setRecipeData] = useState();
+  const queryClient = new QueryClient();
   return (
-    <ChakraProvider theme={theme}>
-      <Box
-        textAlign="center"
-        fontSize="xl"
-        margin={['25px 10px', '40px 300px']}
-      >
-        <Forms />
-        <Flex flexDir="row">
-          <RecipeCard
-            image="https://www.receitasedicasdochef.com.br/wp-content/uploads/2014/10/Receitas-de-Cheesecake.jpg"
-            title="Cheesecake brabo"
-            recipeId="1"
-          />
-        </Flex>
-      </Box>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <Routes>
+        <Route element={<Outlet />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/recipe/:recipeId" element={<RecipePage />} />
+        </Route>
+      </Routes>
+    </QueryClientProvider>
   );
 }
 

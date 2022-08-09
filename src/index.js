@@ -1,17 +1,23 @@
-import { ColorModeScript } from '@chakra-ui/react';
+import { ColorModeScript, ChakraProvider } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import theme from './theme';
+
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
-console.log(theme.config.initialColorMode + 'AA');
+
 root.render(
   <StrictMode>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-    <App />
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <Router>
+        <App />
+      </Router>
+    </ChakraProvider>
   </StrictMode>
 );
 
