@@ -1,5 +1,5 @@
 {
-  "name": "pfc",
+  "name": "pff",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +16,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^3.11.0",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-query": "^3.37.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^0.2.4"
   },
