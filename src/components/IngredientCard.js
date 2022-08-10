@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function IngredientCard(props) {
   const { name, image, metricMeasures } = props;
-  const { amount, unitShort, unitLong } = metricMeasures;
+  const { amount, unitShort } = metricMeasures;
   const imageURL = `https://spoonacular.com/cdn/ingredients_500x500/${image}`;
   return (
     <Box
