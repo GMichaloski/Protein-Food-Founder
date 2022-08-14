@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { getSpecificRecipe } from '../services/recipes';
 import IngredientCard from '../components/IngredientCard';
+import ReturnButton from '../components/ReturnButton';
 export default function RecipePage() {
   const [recipe, setRecipe] = React.useState({
     title: 'loading...',
@@ -19,14 +20,14 @@ export default function RecipePage() {
       setRecipe(response.data);
     };
     fetchSpecificRecipe();
-    console.log(recipe);
-  });
+  }, []);
 
   const { title, image, servings, readyInMinutes, extendedIngredients } =
     recipe;
 
   return (
     <Box>
+      <ReturnButton />
       <Image width="100vw" height="30vh" src={image} />
       <Text marginTop="20px" fontSize="4xl">
         {title}
@@ -47,6 +48,7 @@ export default function RecipePage() {
         {extendedIngredients.map(ingredient => {
           return (
             <IngredientCard
+              key={ingredient.name}
               name={ingredient.name}
               image={ingredient.image}
               metricMeasures={ingredient.measures.metric}
