@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-export const getRecipes = async ({ page = 0 }, searchParams) => {
-  const sufix = getSufix(searchParams);
+export const getRecipes = async page => {
+  const sufix = getSufix();
   const results = await axios.get(
     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${
       process.env.REACT_APP_API_KEY
-    }&offset=${page * 10}&number=10&${sufix}`
+    }&offset=${page * 16}&number=16&${sufix}`
   );
-  return { data: results.data.results, nextPage: page + 1 };
+  return results;
 };
 
 export const getSpecificRecipe = async id => {
@@ -17,7 +17,17 @@ export const getSpecificRecipe = async id => {
   return result;
 };
 
-export const getSufix = object => {
+export const setParams = (maxCalories, minProtein, dietType) => {
+  const params = {
+    maxCalories: maxCalories,
+    minProtein: minProtein,
+    dietType: dietType,
+  };
+  localStorage.setItem('queryParams', JSON.stringify(params));
+};
+
+const getSufix = () => {
+  const object = getParamsFromStorage();
   let sufix = '';
   if (object.minProtein) {
     sufix += `minProtein=${object.minProtein}&`;
@@ -29,4 +39,20 @@ export const getSufix = object => {
     sufix += `diet=${object.diet}`;
   }
   return sufix;
+};
+
+const getParamsFromStorage = () => {
+  return localStorage.getItem('queryParams')
+    ? setDefaultData()
+    : localStorage.getItem('queryParamss');
+};
+
+const setDefaultData = () => {
+  const defaultParams = {
+    maxCalories: '100',
+    minProtein: '0',
+    dietType: '0',
+  };
+  localStorage.setItem('queryParams', JSON.stringify(defaultParams));
+  return localStorage.getItem('queryParams');
 };

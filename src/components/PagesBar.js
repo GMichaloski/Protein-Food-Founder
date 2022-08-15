@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function PagesBar(props) {
   const { pages } = props;
-  console.log(pages.length);
   return (
     <Box
       w="90vw"

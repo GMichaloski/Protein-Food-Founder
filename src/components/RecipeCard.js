@@ -11,7 +11,7 @@ export default function RecipeCard(props) {
       height={['200px', '220px']}
       width={['40vw', '15vw']}
     >
-      <LinkOverlay href={`${recipeId}`}>
+      <LinkOverlay href={`/recipe/${recipeId}`}>
         <Box>
           <Image
             src={image}

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function ReturnButton() {
   const navigate = useNavigate();
   const onClick = () => {
-    navigate('/', { replace: true });
+    navigate('/1', { replace: true });
   };
   return (
     <Box position="fixed" top="10px" left="10px">
